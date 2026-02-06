@@ -1,0 +1,12 @@
+<center>
+    <h1>Добавление нового языка программирования</h1>
+    
+    <form action="/create_prog_lang/" method="post" enctype="multipart/form-data">
+
+        {% csrf_token %}
+
+        {{ form.as_p }}
+
+        <button type="submit">Сохранить</button>
+
+</center>

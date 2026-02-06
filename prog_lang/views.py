@@ -1,5 +1,59 @@
-from django.shortcuts import render, get_object_or_404
-from . import models
+from django.shortcuts import render, get_object_or_404, redirect
+from . import models, forms
+
+
+
+
+def update_prog_lang_view(request, id):
+    prog_lang_id = get_object_or_404(models.ProgLang, id=id)
+    if request.method == 'POST':
+        form = forms.ProgLangForm(
+            request.POST,
+            request.FILES,
+            instance=prog_lang_id
+        )
+        if form.is_valid():
+            form.save()
+            return redirect('/prog_lang/')
+    else:
+        form = forms.ProgLangForm(instance=prog_lang_id)
+
+    return render(request, 'update_prog_lang.html', {
+        'form': form,
+        'prog_lang': prog_lang_id
+    })
+
+
+def delete_prog_lang_view(request, id):
+    prog_lang_id = get_object_or_404(models.ProgLang, id=id)
+    prog_lang_id.delete()
+    return redirect('/prog_lang/')
+
+
+
+def create_prog_lang_view(request):
+    if request.method == 'POST':
+        form = forms.ProgLangForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            return redirect('/prog_lang/')
+    else:
+        form = forms.ProgLangForm()
+    return render(request, 'create_prog_lang.html', {'form': form}) 
+
+   
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 def prog_lang_detail_view(request, id):

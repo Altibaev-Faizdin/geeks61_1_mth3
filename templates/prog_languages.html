@@ -1,7 +1,26 @@
+  <center>
+<button><a href="/create_prog_lang/">Добавить</a></button></center>
+
+<br><br>
+
 {% for i in prog_lang %}
+    <p align="center">
+        <img src="{{ i.image.url }}" width="300" height="400">
+    </p>
 
-<img src="{{i.image.url}}" alt="" width="300" height="400">
-<h2>{{i.title}}</h2>
-<p><a href="#">Learn More</a></p>
+    <h2 align="center">{{ i.title }}</h2>
 
+    <p align="center">
+        <a href="/prog_lang/{{ i.id }}">Learn More</a>
+    </p>
+
+    <p align="center">
+        <a href="/prog_lang/{{ i.id }}/delete">Удалить</a>
+    </p>
+
+    <p align="center">
+        <a href="/prog_lang/{{ i.id }}/update">Редактировать</a>
+    </p>
+
+    <br><br>
 {% endfor %}
