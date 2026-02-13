@@ -1,32 +1,47 @@
-  <center>
-<button><a href="/create_prog_lang/">Добавить</a></button></center>
+<center>
+
+<button><a href="/create_prog_lang/">Добавить</a></button>
 
 <br><br>
 
+<form action="/search/" method="GET">
+    <input type="text" type="search" name="s" placrholder="Найти язык программ">
+    <button type="submit">Найти</button>
+</form>
+
 {% for i in prog_lang %}
-    <p align="center">
-        <img src="{{ i.image.url }}" width="300" height="400">
-    </p>
+<img src="{{ i.image.url }}" alt="" width="300" height="400">
+<h1>{{ i.title }}</h1>
+<p> <a href="/prog_lang/{{ i.id }}/">Подробнее</a></p>
 
-    <h2 align="center">{{ i.title }}</h2>
-
-    <p align="center">
-        <a href="/prog_lang/{{ i.id }}">Learn More</a>
-    </p>
-
-    <p align="center">
-        <a href="/prog_lang/{{ i.id }}/delete">Удалить</a>
-    </p>
-
-    <p align="center">
-        <a href="/prog_lang/{{ i.id }}/update">Редактировать</a>
-    </p>
-
-    <br><br>
+<p> <a href="/prog_lang/{{ i.id }}/delete/">Удалить</a> </p>
+<p> <a href="/prog_lang/{{ i.id }}/update/">Редактировать</a> </p>
 {% endfor %}
+
+
+<div class="pagination">
+        <span class="step-links">
+            {% if prog_lang.has_previous %}
+                <a href="?page=1">&laquo; Первая</a>
+                <a href="?page={{ prog_lang.previous_page_number }}">Предыдущая</a>
+            {% endif %}
+
+            <span class="current">
+                Страница {{ prog_lang.number }} из {{ prog_lang.paginator.num_pages }}.
+            </span>
+
+            {% if prog_lang.has_next %}
+                <a href="?page={{ prog_lang.next_page_number }}">Следующая</a>
+                <a href="?page={{ prog_lang.paginator.num_pages }}">Последняя &raquo;</a>
+            {% endif %}
+        </span>
+    </div>
 
 
 <form action="/login/" method="post">
     {%  csrf_token  %}
     <button type="submit">Выйти из аккаунта</button>
-</form>
+</form> 
+
+
+</center>
