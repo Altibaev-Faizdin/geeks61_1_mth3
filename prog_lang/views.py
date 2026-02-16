@@ -5,13 +5,17 @@ from django.core.paginator import Paginator
 
 
 def search_view(request):
-    if request.method == 'GET':
-        quary = request.GET.get('s')
+        quary = request.GET.get('s', '')
         if quary:
-            prog_lang = models.ProgLang.objects.filter(title__contains=quary)
+            prog_lang = models.ProgLang.objects.filter(title__icontains=quary)
         else:
-            prog_lang = models.ProgLang.objects.none()
-            return render(request, 'prog_languages.html', {'prog_lang': prog_lang})
+            prog_lang = models.ProgLang.objects.none
+        return render(
+            request,
+                'prog_languages.html',
+                    {
+                    'prog_lang': prog_lang
+                       })
         
 
 

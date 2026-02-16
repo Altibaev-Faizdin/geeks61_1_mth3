@@ -3,6 +3,7 @@ from django.contrib.auth import login, logout
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth.models import User
 from users.forms import CustomUserForm
+from django.http import HttpResponse
 
 
 def register_view(request):
@@ -29,7 +30,7 @@ def auth_login_view(request):
         if form.is_valid():
             user = form.get_user()
             login(request, user)
-            return redirect('yaziki_programm')
+            return redirect('yaziki:yaziki_programm')
     else:
         form = AuthenticationForm()
     
