@@ -20,6 +20,9 @@ DEBUG = True
 ALLOWED_HOSTS = []
 
 
+LOGIN_REDIRECT_URL = '/prog_lang/'
+LOGOUT_REDIRECT_URL = '/prog_lang/'
+
 # Application definition
 
 INSTALLED_APPS = [

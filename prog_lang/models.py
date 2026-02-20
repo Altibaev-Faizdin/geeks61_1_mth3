@@ -8,6 +8,9 @@ class ProgLang(models.Model):
 #ImageField-  поле для загрузки изображений
     image = models.ImageField(upload_to='prog_lang/', verbose_name='загрузите изображение языка программирования')
 #PositiveBigIntegerField-  поле для хранения больших положительных целых чисел
+
+    views = models.PositiveBigIntegerField(verbose_name='количество просмотров', default=0)
+
     created_date_lang = models.PositiveBigIntegerField(verbose_name='год создания языка', blank=True)
 #DateTimeField-  поле для хранения даты и времени
     created_at = models.DateTimeField(auto_now_add=True)
